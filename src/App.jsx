@@ -1,34 +1,31 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+import PokemonInfo from './Components/PokemonInfo';
+import PokemonList from './Components/PokemonList';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
 
   const getPokemon = async () => {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon");
+    const res = await fetch("https://pokefight-backend-cbka.onrender.com/pokemon");
     const data = await res.json();
-    setPokemons(data.results);
+    setPokemons(data);
   };
 
   useEffect(()=>{
     getPokemon();
   },[]);
 
-  console.log(pokemons);
+console.log(pokemons);
 
 
   return (
     <>
-    <h1>Pokemons</h1>
-    {pokemons
-        ? pokemons.map((pokemon) => (
-            <div key={pokemon.name}>
-              <h2>{pokemon.name}</h2>
-              <img src="{pokemon.sprites.front_default}" alt="" />
-            </div>
-          ))
-        : "No pokemons to display"}
+<Routes>
+  <Route path="/" element={<PokemonList pokemons={pokemons}/>}/>
+  <Route path="/:id" element={<PokemonInfo pokemons={pokemons}/>}/>
+</Routes>
     </>
   );
 }
