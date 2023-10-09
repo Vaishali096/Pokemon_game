@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import PokemonInfo from "./PokemonInfo";
+import './PokemonList.css';
 export default function PokemonList({pokemons, pokes}) {
       console.log(pokemons);
       console.log(pokes);
@@ -7,12 +7,11 @@ export default function PokemonList({pokemons, pokes}) {
     return(
       <>
     <div className="PokemonList">
-    <h1>Pokemons</h1>
     { pokemons
         ? pokemons.map((pokemon) => (
             <div className="Pokemon" key={pokemon.id}>
-              <Link to={`/${pokemon.id}`}><h4>{pokemon.name.english}</h4></Link>
               <img src="{pokemon.sprites.front_default}" alt="image" />
+              <Link to={`/${pokemon.id}`}><h4>{pokemon.name.english}</h4></Link>
             </div>
           ))
         : "No pokemons to display"}

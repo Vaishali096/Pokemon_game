@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+import Navbar from "./Components/Navbar";
 import PokemonInfo from './Components/PokemonInfo';
 import PokemonList from './Components/PokemonList';
 
@@ -21,23 +22,23 @@ function App() {
     setPokes(data.results);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getPokemon();
     getPokes();
-  },[]);
+  }, []);
 
-console.log(pokemons);
-console.log(pokes);
+  console.log(pokemons);
+  console.log(pokes);
 
 
   return (
     <>
-    {/* <h1>{pokes.sprites.other.dream_world.front_default}</h1> */}
-
-<Routes>
-  <Route path="/" element={<PokemonList pokemons={pokemons} pokes={pokes}/>}/>
-  <Route path="/:id" element={<PokemonInfo pokemons={pokemons} pokes={pokes}/>}/>
-</Routes>
+      {/* <h1>{pokes.sprites.other.dream_world.front_default}</h1> */}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<PokemonList pokemons={pokemons} pokes={pokes} />} />
+        <Route path="/:id" element={<PokemonInfo pokemons={pokemons} pokes={pokes} />} />
+      </Routes>
     </>
   );
 }
