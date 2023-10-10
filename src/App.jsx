@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+
 import axios from 'axios';
+import Navbar from "./Components/Navbar";
 import PokemonInfo from './Components/PokemonInfo';
 import PokemonList from './Components/PokemonList';
 import Pagination from './Components/Pagination';
@@ -30,9 +32,10 @@ function App() {
 
   return (
     <>
+
     <Routes>
-      <Route path="/" element={<PokemonList pokemons={currentPosts}/>}/>
-      <Route path="/:id" element={<PokemonInfo pokemons={pokemons}/>}/>
+    <Route path="/" element={<PokemonList pokemons={currentPosts}/>}/>
+      <Route path="/:name" element={<PokemonInfo pokemons={pokemons}/>}/>
     </Routes>
     <div>
     <Pagination totalPosts={pokemons.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}/>

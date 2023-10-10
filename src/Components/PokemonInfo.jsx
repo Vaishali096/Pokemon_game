@@ -1,14 +1,17 @@
 import { useParams, useNavigate } from "react-router-dom";
-export default function PokemonInfo({pokemons}){
-    console.log(pokemons);
-    const navigate = useNavigate();
-    const { id } = useParams();
-    const onePokemon = pokemons && pokemons.find((pokemon)=>pokemon.id ==(id));
-    console.log(onePokemon);
+import './PokemonInfo.css';
 
-    return(
+export default function PokemonInfo({ pokemons}) {
+    const navigate = useNavigate();
+    const { name } = useParams();
+
+    const onePokemon = pokemons && pokemons.find((pokemon) => pokemon.name.english == (name));
+
+    return (
         <div className="PokemonDetails">
+
         <h3>Name</h3>
+        {onePokemon && <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${onePokemon.id}.png`} />}
         <p>{onePokemon && onePokemon.name.english}</p>
         <p>{onePokemon && onePokemon.name.japanese}</p>
         <p>{onePokemon && onePokemon.name.chinese}</p>
