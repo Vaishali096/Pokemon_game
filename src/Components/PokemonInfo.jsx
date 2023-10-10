@@ -1,13 +1,15 @@
 import { useParams, useNavigate } from "react-router-dom";
-export default function PokemonInfo({pokemons}){
-    console.log(pokemons);
+import './PokemonInfo.css';
+
+export default function PokemonInfo({ pokemons}) {
     const navigate = useNavigate();
     const { id } = useParams();
     const onePokemon = pokemons && pokemons.find((pokemon)=>pokemon.id ==(id));
-    console.log(onePokemon);
+    const onePokemon = pokemons && pokemons.find((pokemon) => pokemon.id == (id));
 
-    return(
+    return (
         <div className="PokemonDetails">
+
         <h3>Name</h3>
         <p>{onePokemon && onePokemon.name.english}</p>
         <p>{onePokemon && onePokemon.name.japanese}</p>

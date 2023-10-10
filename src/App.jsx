@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
 import './App.css';
+
 import axios from 'axios';
+import Navbar from "./Components/Navbar";
 import PokemonInfo from './Components/PokemonInfo';
 import PokemonList from './Components/PokemonList';
-
-
 
 function App() {
     const [pokemons, setPokemons] = useState([]);
@@ -22,10 +22,12 @@ function App() {
   
   return (
     <>
+
     <Routes>
       <Route path="/" element={<PokemonList pokemons={pokemons}/>}/>
       <Route path="/:id" element={<PokemonInfo pokemons={pokemons}/>}/>
     </Routes>
+
     </>
   );
 }

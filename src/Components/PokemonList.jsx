@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
+import './PokemonList.css';
 export default function PokemonList({pokemons}) {
-      console.log(pokemons);
-
     return(
       <>
     <div className="PokemonList">
