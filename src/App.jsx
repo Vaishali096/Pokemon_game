@@ -4,11 +4,14 @@ import './App.css';
 import axios from 'axios';
 import PokemonInfo from './Components/PokemonInfo';
 import PokemonList from './Components/PokemonList';
+import Pagination from './Components/Pagination';
 
 
 
 function App() {
     const [pokemons, setPokemons] = useState([]);
+    const[currentPage, setCurrentPage] = useState(1);
+    const[postsPerPage, setPostsPerPage]= useState(12);
 
     const getPokemon = async () => {
       const res = await axios.get("https://pokefight-backend-cbka.onrender.com/pokemon");
@@ -20,12 +23,20 @@ function App() {
       getPokemon();
     },[]);
   
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPosts = pokemons.slice(firstPostIndex, lastPostIndex);
+
+
   return (
     <>
     <Routes>
-      <Route path="/" element={<PokemonList pokemons={pokemons}/>}/>
+      <Route path="/" element={<PokemonList pokemons={currentPosts}/>}/>
       <Route path="/:id" element={<PokemonInfo pokemons={pokemons}/>}/>
     </Routes>
+    <div>
+    <Pagination totalPosts={pokemons.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}/>
+    </div>
     </>
   );
 }
