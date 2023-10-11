@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "./PokemonList.css";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 export default function PokemonList({ pokemons }) {
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
@@ -10,50 +12,56 @@ export default function PokemonList({ pokemons }) {
 
   return (
     <>
-    <div className="logo_container" >
-        <img className="main_logo" src="/poke_logo.png" alt="logo" />
-      </div>
-      <h2>Choose your Pokemon to start a fight!</h2>
-    
       <div
-        className="PokemonList"
-        style={{ background: themeStyles.ui, color: themeStyles.text }}
+        style={{
+          background: themeStyles.ui,
+          color: themeStyles.text,
+        }}
       >
-        <h1>PokeFight</h1>
-        <button
+        <div className="logo_container">
+          <img className="main_logo" src="/poke_logo.png" alt="logo" />
+        </div>
+        <h2>Choose your Pokemon to start a fight!</h2>
+
+        <div
+          className="PokemonList"
           style={{ background: themeStyles.ui, color: themeStyles.text }}
-          onClick={toggleTheme}
         >
-          {isLightTheme ? "🌙" : "💡"}{" "}
-        </button>
-        {pokemons
-          ? pokemons.map((pokemon) => (
-              <div
-                style={{
-                  background: themeStyles.bg,
-                  color: themeStyles.text,
-                }}
-                className="Pokemon"
-                key={pokemon.id}
-              >
-                <Link to={`/${pokemon.name.english}`}>
-                  <h4
-                    style={{
-                      background: themeStyles.bg,
-                      color: themeStyles.text,
-                    }}
-                  >
-                    {pokemon.name.english}
-                  </h4>
-                </Link>
-                <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
-                />
-              </div>
-            ))
-          : "No pokemons to display"}
+          {pokemons
+            ? pokemons.map((pokemon) => (
+                <Card
+                  style={{
+                    width: "18rem",
+                    background: themeStyles.bg,
+                    color: themeStyles.text,
+                  }}
+                >
+                  <Card.Img
+                    variant="top"
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
+                  />
+                  <Card.Body>
+                    <Card.Title>{pokemon.name.english}</Card.Title>
+                    <Link to={`/${pokemon.name.english}`}>
+                      <Button variant="danger">Pokemon Info</Button>
+                    </Link>
+                  </Card.Body>
+                </Card>
+
+                // <div
+
+                //   className="Pokemon"
+                //   key={pokemon.id}
+                // >
+
+                //   <img
+                //     src=
+                //   />
+                // </div>
+              ))
+            : "No pokemons to display"}
+        </div>
       </div>
     </>
   );
 }
-
