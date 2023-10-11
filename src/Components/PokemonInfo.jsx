@@ -1,16 +1,25 @@
 import { useParams, useNavigate } from "react-router-dom";
 import "./PokemonInfo.css";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
   const navigate = useNavigate();
   const { name } = useParams();
 
+  const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
+
+  const themeStyles = isLightTheme ? light : dark;
+
   const onePokemon =
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
 
   return (
-    <div className="PokemonDetails">
+    <div
+      className="PokemonDetails"
+      style={{ background: themeStyles.ui, color: themeStyles.text }}
+    >
       <h3>Name</h3>
       {onePokemon && (
         <img

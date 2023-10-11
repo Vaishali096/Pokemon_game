@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import "./Fight.css";
+import { useContext } from "react";
+import { ThemeContext } from "../context/ThemeContext";
 
 const Fight = ({ selectedPokemon }) => {
   const [fightPageUserPokemon, setFightPageUserPokemon] = useState();
@@ -26,6 +28,10 @@ const Fight = ({ selectedPokemon }) => {
   const [fourthFightRoundCPU, setFourthFightRoundCPU] = useState(false);
   const [fourthFightRoundUser, setFourthFightRoundUser] = useState(false);
   const [draw, setDraw] = useState(false);
+
+  const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
+
+  const themeStyles = isLightTheme ? light : dark;
 
   const cpuPokemonSelect = Math.floor(Math.random() * 890);
 
@@ -98,7 +104,6 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (userHealth <= 0) {
-      console.log(" user win");
       setCPUWins(true);
     }
   }, [endCPUTurn]);
@@ -111,7 +116,6 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (CPUHealth <= 0) {
-      console.log(" cpu win");
       setUserWins(true);
     }
   }, [endUserTurn]);
@@ -172,7 +176,6 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (userHealth <= 0) {
-      console.log("hellooooo user win");
       setCPUWins(true);
     }
   }, [endCPUTurn2]);
@@ -185,7 +188,6 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (CPUHealth <= 0) {
-      console.log("hellooooo cpu win");
       setUserWins(true);
     }
   }, [endUserTurn2]);
@@ -197,7 +199,6 @@ const Fight = ({ selectedPokemon }) => {
       setFourthFightRoundUser(true);
     }
     if (userHealth <= 0) {
-      console.log("hellooooo user win 3");
       setCPUWins(true);
     }
   }, [endCPUTurn3]);
@@ -209,7 +210,6 @@ const Fight = ({ selectedPokemon }) => {
       setFourthFightRoundCPU(true);
     }
     if (CPUHealth <= 0) {
-      console.log("hellooooo cpu win 3");
       setUserWins(true);
     }
   }, [endUserTurn3]);
@@ -244,7 +244,6 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (userHealth <= 0) {
-      console.log("hellooooo user win 3");
       setCPUWins(true);
     }
   }, [endCPUTurn4]);
@@ -255,134 +254,160 @@ const Fight = ({ selectedPokemon }) => {
     }
 
     if (CPUHealth <= 0) {
-      console.log("hellooooo cpu win 3");
       setUserWins(true);
     }
   }, [endUserTurn4]);
 
   return (
     <>
-      <div className="fight-header">
-        <img className="fight-header-img" src="/poke_logo.png" alt="" />
-      </div>
-      <div className="fight-attacking-pokemon">
-        <div
-          className={
-            userTurnAnnouncement
-              ? "fight-user-attack-show"
-              : "fight-user-attack-hide"
-          }
-        >
-          {fightPageUserPokemon && fightPageUserPokemon.name.english} is
-          attacking!
+      <div style={{ background: themeStyles.ui, color: themeStyles.text }}>
+        <div className="fight-header">
+          <img
+            className="fight-header-img"
+            src="/poke_logo.png"
+            alt=""
+            style={{ background: themeStyles.ui, color: themeStyles.text }}
+          />
         </div>
         <div
-          className={
-            CPUTurnAnnouncement
-              ? "fight-CPU-attack-show"
-              : "fight-CPU-attack-hide"
-          }
-        >
-          {fightPageCPUPokemon && fightPageCPUPokemon.name.english} is
-          attacking!
-        </div>
-      </div>
-      <div className="fight-winner-announcement">
-        <div
-          className={userWins ? "fight-user-wins-show" : "fight-user-wins-hide"}
-        >
-          You are the winner!
-        </div>
-        <div
-          className={CPUWins ? "fight-CPU-wins-show" : "fight-CPU-wins-hide"}
-        >
-          Computer is the winner!
-        </div>
-        <div className={draw ? "fight-draw-show" : "fight-draw-hide"}>
-          Both Pokemon are exhausted, the fight ends in a draw...
-        </div>
-      </div>
-      <div className="fight-container">
-        <div
-          className={
-            userWins
-              ? "fight-player-container-winner"
-              : "fight-player-container"
-          }
+          className="fight-attacking-pokemon"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
           <div
             className={
-              fightStatus ? "fight-user-health-show" : "fight-user-health-hide"
+              userTurnAnnouncement
+                ? "fight-user-attack-show"
+                : "fight-user-attack-hide"
             }
           >
-            Current Health: {userHealth > 0 ? userHealth : 0}
+            {fightPageUserPokemon && fightPageUserPokemon.name.english} is
+            attacking!
           </div>
-          <div>You have selected:</div>
-          <div>
-            <p>{fightPageUserPokemon && fightPageUserPokemon.name.english}</p>
-            <img
-              className="Pokedex-image"
-              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon}.png`}
-              height="150px"
-            />
-            <p>
-              Attack: {fightPageUserPokemon && fightPageUserPokemon.base.Attack}
-            </p>
-            <p>
-              Defense:{" "}
-              {fightPageUserPokemon && fightPageUserPokemon.base.Defense}
-            </p>
-            <p>HP: {fightPageUserPokemon && fightPageUserPokemon.base.HP}</p>
-            <p>
-              Speed: {fightPageUserPokemon && fightPageUserPokemon.base.Speed}
-            </p>
+          <div
+            className={
+              CPUTurnAnnouncement
+                ? "fight-CPU-attack-show"
+                : "fight-CPU-attack-hide"
+            }
+          >
+            {fightPageCPUPokemon && fightPageCPUPokemon.name.english} is
+            attacking!
           </div>
         </div>
-        <div className="fight-x">x</div>
         <div
-          className={
-            CPUWins ? "fight-cpu-container-winner" : "fight-cpu-container"
-          }
+          className="fight-winner-announcement"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
           <div
             className={
-              fightStatus ? "fight-CPU-health-show" : "fight-CPU-health-hide"
+              userWins ? "fight-user-wins-show" : "fight-user-wins-hide"
             }
           >
-            Current Health: {CPUHealth > 0 ? CPUHealth : 0}
+            You are the winner!
           </div>
-          <div>Computer has selected:</div>
-          <div>
-            <p>{fightPageCPUPokemon && fightPageCPUPokemon.name.english}</p>
-            {fightPageCPUPokemon && (
+          <div
+            className={CPUWins ? "fight-CPU-wins-show" : "fight-CPU-wins-hide"}
+          >
+            Computer is the winner!
+          </div>
+          <div className={draw ? "fight-draw-show" : "fight-draw-hide"}>
+            Both Pokemon are exhausted, the fight ends in a draw...
+          </div>
+        </div>
+        <div
+          className="fight-container"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
+        >
+          <div
+            style={{ background: themeStyles.bg, color: themeStyles.text }}
+            className={
+              userWins
+                ? "fight-player-container-winner"
+                : "fight-player-container"
+            }
+          >
+            <div
+              className={
+                fightStatus
+                  ? "fight-user-health-show"
+                  : "fight-user-health-hide"
+              }
+            >
+              Current Health: {userHealth > 0 ? userHealth : 0}
+            </div>
+            <div>You have selected:</div>
+            <div>
+              <p>{fightPageUserPokemon && fightPageUserPokemon.name.english}</p>
               <img
                 className="Pokedex-image"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${fightPageCPUPokemon.id}.png`}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon}.png`}
                 height="150px"
               />
-            )}
-            <p>
-              Attack: {fightPageCPUPokemon && fightPageCPUPokemon.base.Attack}
-            </p>
-            <p>
-              Defense: {fightPageCPUPokemon && fightPageCPUPokemon.base.Defense}
-            </p>
-            <p>HP: {fightPageCPUPokemon && fightPageCPUPokemon.base.HP}</p>
-            <p>
-              Speed: {fightPageCPUPokemon && fightPageCPUPokemon.base.Speed}
-            </p>
+              <p>
+                Attack:{" "}
+                {fightPageUserPokemon && fightPageUserPokemon.base.Attack}
+              </p>
+              <p>
+                Defense:{" "}
+                {fightPageUserPokemon && fightPageUserPokemon.base.Defense}
+              </p>
+              <p>HP: {fightPageUserPokemon && fightPageUserPokemon.base.HP}</p>
+              <p>
+                Speed: {fightPageUserPokemon && fightPageUserPokemon.base.Speed}
+              </p>
+            </div>
+          </div>
+          <div className="fight-x">x</div>
+          <div
+            style={{ background: themeStyles.bg, color: themeStyles.text }}
+            className={
+              CPUWins ? "fight-cpu-container-winner" : "fight-cpu-container"
+            }
+          >
+            <div
+              className={
+                fightStatus ? "fight-CPU-health-show" : "fight-CPU-health-hide"
+              }
+            >
+              Current Health: {CPUHealth > 0 ? CPUHealth : 0}
+            </div>
+            <div>Computer has selected:</div>
+            <div>
+              <p>{fightPageCPUPokemon && fightPageCPUPokemon.name.english}</p>
+              {fightPageCPUPokemon && (
+                <img
+                  className="Pokedex-image"
+                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${fightPageCPUPokemon.id}.png`}
+                  height="150px"
+                />
+              )}
+              <p>
+                Attack: {fightPageCPUPokemon && fightPageCPUPokemon.base.Attack}
+              </p>
+              <p>
+                Defense:{" "}
+                {fightPageCPUPokemon && fightPageCPUPokemon.base.Defense}
+              </p>
+              <p>HP: {fightPageCPUPokemon && fightPageCPUPokemon.base.HP}</p>
+              <p>
+                Speed: {fightPageCPUPokemon && fightPageCPUPokemon.base.Speed}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="fight-lower-container">
         <div
-          className={fightStatus ? "fight-button-hide" : "fight-button-show"}
-          onClick={() => {
-            setFightStatus(true);
-          }}
+          className="fight-lower-container"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
-          <img src="pokeball.png" alt="" height="100px" />
-          <p className="fight-fight-text">Fight!</p>
+          <div
+            className={fightStatus ? "fight-button-hide" : "fight-button-show"}
+            onClick={() => {
+              setFightStatus(true);
+            }}
+          >
+            <img src="pokeball.png" alt="" height="100px" />
+            <p className="fight-fight-text">Fight!</p>
+          </div>
         </div>
       </div>
     </>
