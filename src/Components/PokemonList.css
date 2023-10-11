@@ -1,19 +1,18 @@
-
-.logo_container  {
-    width: 100%;
-    text-align: center;
-    margin: 10px;
+.logo_container {
+  width: 100%;
+  text-align: center;
+  margin: 10px;
 }
 
 .main_logo {
-    height: 150px;
-    margin: 10px;
+  height: 150px;
+  margin: 10px;
 }
 
 h2 {
-    width: 100%;
-    text-align: center;
-    margin: 10px;
+  width: 100%;
+  text-align: center;
+  margin: 10px;
 }
 
 .card-deck {
@@ -38,6 +37,10 @@ a:link {
 }
 
 a:hover {
- color: orangered;
+  color: orangered;
 }
 
+.PokemonList {
+  display: flex;
+  flex-flow: wrap;
+}
