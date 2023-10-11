@@ -22,3 +22,8 @@
     font-size:medium;
 }
 
+.pageNo{
+display: flex;
+flex-direction: row;
+}
+
