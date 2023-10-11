@@ -9,6 +9,7 @@ import Navbar from "./Components/Navbar";
 import PokemonInfo from "./Components/PokemonInfo";
 import PokemonList from "./Components/PokemonList";
 import Fight from "./Components/Fight";
+import Ranking from './Components/Ranking';
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -28,6 +29,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<PokemonList pokemons={pokemons} />} />
         <Route
@@ -43,6 +45,7 @@ function App() {
           path="/fight"
           element={<Fight selectedPokemon={selectedPokemon} />}
         />
+        <Route path="/ranking" element={<Ranking />} />
       </Routes>
     </>
   );

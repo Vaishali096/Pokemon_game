@@ -1,0 +1,20 @@
+* {
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo_container {
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+}
+
+.main_logo_info {
+  height: 100px;
+  margin: 10px;
+}
+
+.table-bordered {
+    width: 50%;
+}

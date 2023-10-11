@@ -16,6 +16,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
 
   return (
+    <>
     <div
       className="PokemonDetails"
       style={{ background: themeStyles.ui, color: themeStyles.text }}
@@ -48,5 +49,6 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
         </button>
       </Link>
     </div>
+    </>
   );
 }

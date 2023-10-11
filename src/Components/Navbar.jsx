@@ -1,13 +1,15 @@
 import './Navbar.css';
+import { Link } from "react-router-dom";
 
 function Navbar() {
 
     return (
-        <div className="nav_container">
-            <h1 className='vertical-center'>PokeFight</h1>
-            <h3>About</h3>
-            <h3>Fight</h3>
-        </div>
+        <>
+            <div className="nav_container">
+                <Link to="/" className="navlink">Home</Link>
+                <Link to="/ranking" className="navlink">Ranking</Link>
+            </div>
+        </>
     );
 }
 

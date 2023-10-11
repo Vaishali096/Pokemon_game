@@ -10,6 +10,11 @@ export default function PokemonList({ pokemons }) {
 
   return (
     <>
+    <div className="logo_container" >
+        <img className="main_logo" src="/poke_logo.png" alt="logo" />
+      </div>
+      <h2>Choose your Pokemon to start a fight!</h2>
+    
       <div
         className="PokemonList"
         style={{ background: themeStyles.ui, color: themeStyles.text }}
@@ -51,3 +56,4 @@ export default function PokemonList({ pokemons }) {
     </>
   );
 }
+
