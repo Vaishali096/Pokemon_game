@@ -44,3 +44,8 @@ a:hover {
   display: flex;
   flex-flow: wrap;
 }
+
+.PokemonList-pokemon-name {
+  text-align: center;
+  margin-bottom: 10%;
+}

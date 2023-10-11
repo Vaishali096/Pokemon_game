@@ -25,21 +25,34 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
 
   return (
     <>
-      <div style={{ background: themeStyles.ui, color: themeStyles.text }}>
+      <div
+        className="PokemonInfo-container"
+        style={{ background: themeStyles.ui, color: themeStyles.text }}
+      >
+        <div className="logo_container">
+          <img className="main_logo" src="/poke_logo.png" alt="logo" />
+        </div>
         <Card
           className="text-center"
           style={{ background: themeStyles.bg, color: themeStyles.text }}
         >
           <Card.Body>
-            <Card.Title>{onePokemon && onePokemon.name.english}</Card.Title>
+            <Card.Title className="PokemonInfo-pokemon-name">
+              {onePokemon && onePokemon.name.english}
+            </Card.Title>
             <Card.Text>
               {onePokemon && (
                 <img
+                  className="PokemonInfo-pokemon-img"
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${onePokemon.id}.png`}
                 />
               )}
-              <h3>Type</h3>
-              <p>{onePokemon && onePokemon.type}</p>
+              <p>Type:</p>
+              <div className="PokemonInfo-pokemon-type">
+                {onePokemon.type.map((type) => (
+                  <div>{type}</div>
+                ))}
+              </div>
               <p>HP: {onePokemon && onePokemon.base.HP}</p>
               <p>Attack: {onePokemon && onePokemon.base.Attack}</p>
               <p>Defense: {onePokemon && onePokemon.base.Defense}</p>
@@ -50,11 +63,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
             </Button>
           </Card.Body>
         </Card>
-        <Modal
-          show={show}
-          onHide={handleClose}
-          style={{ background: themeStyles.ui, color: themeStyles.text }}
-        >
+        <Modal className="Pokemon-info-modal" show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Please enter your username:</Modal.Title>
           </Modal.Header>

@@ -405,8 +405,8 @@ const Fight = ({ selectedPokemon }) => {
               setFightStatus(true);
             }}
           >
-            <img src="pokeball.png" alt="" height="100px" />
             <p className="fight-fight-text">Fight!</p>
+            <img src="pokeball.png" alt="" height="100px" />
           </div>
         </div>
       </div>
