@@ -41,7 +41,9 @@ export default function PokemonList({ pokemons }) {
                     src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`}
                   />
                   <Card.Body>
-                    <Card.Title>{pokemon.name.english}</Card.Title>
+                    <Card.Title className="PokemonList-pokemon-name">
+                      {pokemon.name.english}
+                    </Card.Title>
                     <Link to={`/${pokemon.name.english}`}>
                       <Button variant="danger">Pokemon Info</Button>
                     </Link>

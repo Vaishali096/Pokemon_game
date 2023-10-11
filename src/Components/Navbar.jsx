@@ -14,13 +14,22 @@ function Navbar() {
         className="nav_container"
         style={{ background: themeStyles.ui, color: themeStyles.text }}
       >
-        <Link to="/" className="navlink">
+        <Link
+          to="/"
+          className="navlink"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
+        >
           Home
         </Link>
-        <Link to="/ranking" className="navlink">
+        <Link
+          to="/ranking"
+          className="navlink"
+          style={{ background: themeStyles.ui, color: themeStyles.text }}
+        >
           Ranking
         </Link>
         <button
+          className="navbar-theme-button"
           style={{ background: themeStyles.ui, color: themeStyles.text }}
           onClick={toggleTheme}
         >

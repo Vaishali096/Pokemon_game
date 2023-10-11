@@ -13,15 +13,32 @@
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  margin-bottom: -1%;
+  padding-top: 0.5%;
 }
 
 a.navlink {
-    color: white;
-    font-size: 26px;
-    font-weight: 600;
+  color: white;
+  font-size: 26px;
+  font-weight: 600;
 }
 
 a:hover.navlink {
-    color: black;
+  text-decoration: underline;
+  transform: scale(1.1);
+  transition: 0.2s;
 }
 
+.navbar-theme-button {
+  position: absolute;
+  right: 2%;
+  padding: 0.1%;
+  border: none;
+  font-size: 2em;
+  border: 1px solid grey;
+  border-radius: 50px;
+}
+.navbar-theme-button:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
+}
