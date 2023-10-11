@@ -1,13 +1,12 @@
-.Pokemon img{
-
+.Pokemon img {
 }
 
-.PokemonDetails{
-    background-color: rgb(182, 227, 182);
-    font-family: sans-serif;
-    font-size:medium;
-    margin: auto;
-    padding: 10px;
-    width: 50%;
-    text-align: center;
+.PokemonDetails {
+  background-color: rgb(182, 227, 182);
+  font-family: sans-serif;
+  font-size: medium;
+  margin: auto;
+  padding: 10px;
+  width: 50%;
+  text-align: center;
 }
