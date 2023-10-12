@@ -1,59 +1,47 @@
-import "./Ranking.css";
-import { useContext } from "react";
-import { ThemeContext } from "../context/ThemeContext";
-import Table from "react-bootstrap/Table";
+import React, { useEffect, useState } from 'react';
+import './Ranking.css';
 
 export default function Ranking() {
-  const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
+    const [users, setUsers] = useState([]); // State to store the fetched user data
 
-  const themeStyles = isLightTheme ? light : dark;
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const res = await fetch("https://pokefight-backend-cbka.onrender.com/game/user");
+                const data = await res.json();
+                setUsers(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        getData();
+    }, []);
 
-  return (
-    <>
-      <div
-        className="ranking-container"
-        style={{ background: themeStyles.ui, color: themeStyles.text }}
-      >
-        <div className="logo_container">
-          <img className="main_logo" src="/poke_logo.png" alt="logo" />
-        </div>
-        <div className="table-container">
-          <h2 className="ranking-heading">Current Leaderboard</h2>
-          <Table
-            variant={!isLightTheme ? "dark" : null}
-            class="table table-bordered"
-          >
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-            </tbody>
-          </Table>
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="logo_container">
+                <img className="main_logo" src="/poke_logo.png" alt="logo" />
+            </div>
+
+            <table className="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Username</th>
+                        <th scope="col">Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map((user, index) => (
+                        <tr key={user._id}>
+                            <th scope="row">{index + 1}</th>
+                            <td>{user.username}</td>
+                            <td>{user.score}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        </>
+    );
+
 }
