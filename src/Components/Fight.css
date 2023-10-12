@@ -16,6 +16,13 @@
   padding: 2% 4%;
   border: 2px solid black;
   margin: 0 4%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fight-user-select {
+  margin-top: -20%;
 }
 
 .fight-player-container-winner {
@@ -53,11 +60,17 @@
 
 .fight-user-health-show,
 .fight-CPU-health-show {
-  font-size: 1.5em;
-  margin-bottom: 10%;
-  border: 2px dashed grey;
+  font-size: 1.2em;
   padding: 5%;
   width: 100%;
+}
+
+.fight-user-health-show-current-HP-div,
+.fight-CPU-health-show-current-HP-div {
+  font-size: 1.2em;
+  padding: 5%;
+  width: 100%;
+  margin-bottom: 10%;
 }
 
 .fight-user-health-hide,
@@ -83,8 +96,9 @@
 }
 
 .fight-header-img {
-  height: 150px;
+  height: 140px;
   object-fit: contain;
+  margin-top: 0.5%;
 }
 
 .fight-winner-announcement,
@@ -98,4 +112,9 @@
   font-size: 1.4em;
   margin-top: -0.5%;
   margin-bottom: 1%;
+}
+
+.fight-bar-cpu,
+.fight-bar-user {
+  background-color: red;
 }
