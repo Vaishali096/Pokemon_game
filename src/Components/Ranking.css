@@ -1,0 +1,28 @@
+* {
+  margin: auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.logo_container {
+  width: 100%;
+  text-align: center;
+  margin: 10px;
+}
+
+.main_logo_info {
+  height: 100px;
+  margin: 10px;
+}
+
+.ranking-container {
+  height: 90vh;
+}
+
+.table-container {
+  width: 60%;
+}
+
+.ranking-heading {
+  margin: 2.5% 0%;
+}
