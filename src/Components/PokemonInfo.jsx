@@ -25,6 +25,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
 
   const addNewUser = async () => {
+    setSelectedPokemon(onePokemon.id);
     const response = await fetch(
       "https://pokefight-backend-cbka.onrender.com/game/user",
       {
@@ -38,7 +39,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
     );
     const data = await response.json();
     console.log(data);
-    setSelectedPokemon(onePokemon.id);
+
     setNewUsername("");
   };
 
@@ -66,16 +67,28 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${onePokemon.id}.png`}
                 />
               )}
-              <p>Type:</p>
+              <p className="PokemonInfo-bold">Type:</p>
               <div className="PokemonInfo-pokemon-type">
                 {onePokemon.type.map((type) => (
                   <div>{type}</div>
                 ))}
               </div>
-              <p>HP: {onePokemon && onePokemon.base.HP}</p>
-              <p>Attack: {onePokemon && onePokemon.base.Attack}</p>
-              <p>Defense: {onePokemon && onePokemon.base.Defense}</p>
-              <p>Speed: {onePokemon && onePokemon.base.Speed}</p>
+              <p>
+                <span className="PokemonInfo-bold">HP: </span>{" "}
+                {onePokemon && onePokemon.base.HP}
+              </p>
+              <p>
+                <span className="PokemonInfo-bold">Attack: </span>{" "}
+                {onePokemon && onePokemon.base.Attack}
+              </p>
+              <p>
+                <span className="PokemonInfo-bold">Defense: </span>{" "}
+                {onePokemon && onePokemon.base.Defense}
+              </p>
+              <p>
+                <span className="PokemonInfo-bold">Speed: </span>{" "}
+                {onePokemon && onePokemon.base.Speed}
+              </p>
             </Card.Text>
             <Button variant="danger" onClick={handleShow}>
               Select this Pokemon and fight!
