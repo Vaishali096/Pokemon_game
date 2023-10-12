@@ -15,6 +15,14 @@
   margin: 10px;
 }
 
-.table-bordered {
-    width: 50%;
+.ranking-container {
+  height: 90vh;
+}
+
+.table-container {
+  width: 60%;
+}
+
+.ranking-heading {
+  margin: 2.5% 0%;
 }

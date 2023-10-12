@@ -31,9 +31,9 @@
 }
 
 .btn-success:hover {
-    background-color: white;
-    color: orangered;
-    border: 1px solid green;
+  background-color: white;
+  color: orangered;
+  border: 1px solid green;
 }
 
 .btn-secondary {
@@ -41,7 +41,37 @@
 }
 
 .btn-secondary:hover {
-    background-color: white;
-    color: orangered;
-    border: 1px solid grey;
+  background-color: white;
+  color: orangered;
+  border: 1px solid grey;
+}
+
+.PokemonInfo-container {
+  height: 100vh;
+}
+
+.PokemonInfo-pokemon-name {
+  font-size: 2em;
+}
+
+.PokemonInfo-pokemon-img {
+  height: 150px;
+  object-fit: contain;
+}
+
+.PokemonInfo-pokemon-type {
+  margin-bottom: 7%;
+}
+
+.Pokemon-info-modal .modal-content {
+  background-color: #dddddd;
+}
+
+.Pokemon-info-input {
+  min-width: 250px;
+  padding-left: 3%;
+}
+
+.PokemonInfo-bold {
+  font-weight: bold;
 }

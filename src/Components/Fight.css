@@ -1,0 +1,139 @@
+.fight-container {
+  display: flex;
+  justify-content: center;
+
+  min-width: 100vw;
+}
+
+.fight-header {
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 2%;
+}
+
+.fight-player-container,
+.fight-cpu-container {
+  padding: 2% 4%;
+  border: 2px solid black;
+  margin: 0 4%;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.fight-user-select {
+  margin-top: -20%;
+}
+
+.fight-player-container-winner {
+  padding: 2% 4%;
+  border: 10px solid green;
+  margin: 0 4%;
+  text-align: center;
+}
+.fight-cpu-container-winner {
+  padding: 2% 4%;
+  border: 10px solid green;
+  margin: 0 4%;
+  text-align: center;
+}
+
+.fight-x {
+  margin: auto 0;
+  font-size: 5em;
+  font-family: cursive;
+}
+
+.fight-button-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  margin-top: -2%;
+  padding-bottom: 2%;
+}
+.fight-button-hide {
+  display: none;
+}
+
+.fight-fight-text {
+  font-size: 1.8em;
+  margin-top: 5%;
+}
+
+.fight-user-health-show,
+.fight-CPU-health-show {
+  font-size: 1.2em;
+  padding: 5%;
+  width: 100%;
+}
+
+.fight-user-health-show-current-HP-div,
+.fight-CPU-health-show-current-HP-div {
+  font-size: 1.2em;
+  padding: 5%;
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.fight-user-health-hide,
+.fight-CPU-health-hide,
+.fight-user-attack-hide,
+.fight-CPU-attack-hide,
+.fight-user-wins-hide,
+.fight-CPU-wins-hide,
+.fight-draw-hide {
+  display: none;
+}
+
+.attack {
+  background-color: red;
+  font-size: 2em;
+}
+
+.fight-lower-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 2%;
+  font-family: cursive;
+}
+
+.fight-header-img {
+  height: 140px;
+  object-fit: contain;
+  margin-top: 0.5%;
+}
+
+.fight-winner-announcement,
+.fight-user-attack-show,
+.fight-CPU-attack-show,
+.fight-draw-show,
+.fight-user-wins-show,
+.fight-CPU-wins-show {
+  display: flex;
+  justify-content: center;
+  font-size: 1.4em;
+  margin-top: -0.5%;
+  margin-bottom: 1%;
+}
+
+.fight-bar-cpu,
+.fight-bar-user {
+  background-color: red;
+}
+
+.userWins-hide,
+.CPUwins-hide {
+  display: none;
+}
+.userWins-show,
+.CPUwins-show {
+  font-size: 2em;
+}
+
+.fight-pokemon-name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
