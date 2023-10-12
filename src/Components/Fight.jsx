@@ -87,6 +87,22 @@ const Fight = ({ selectedPokemon }) => {
       const drawData = await response.json();
       console.log(drawData);
     }
+    if (CPUWins) {
+      const response = await fetch(
+        "https://pokefight-backend-cbka.onrender.com/game/user",
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            username: username,
+            score: score - 50,
+            _id: id,
+          }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
+      const loseData = await response.json();
+      console.log(loseData);
+    }
   };
 
   const userAttacks = () => {
@@ -277,20 +293,24 @@ const Fight = ({ selectedPokemon }) => {
   useEffect(() => {
     if (userHealth > 0) {
       setDraw(true);
+      updateUser();
     }
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn4]);
 
   useEffect(() => {
     if (CPUHealth > 0) {
       setDraw(true);
+      updateUser();
     }
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn4]);
 
