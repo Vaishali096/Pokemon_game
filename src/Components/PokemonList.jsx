@@ -5,7 +5,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-export default function PokemonList({ pokemons }) {
+export default function PokemonList({ currentPosts }) {
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
 
   const themeStyles = isLightTheme ? light : dark;
@@ -27,8 +27,8 @@ export default function PokemonList({ pokemons }) {
           className="PokemonList"
           style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
-          {pokemons
-            ? pokemons.map((pokemon) => (
+          {currentPosts
+            ? currentPosts.map((pokemon) => (
                 <Card
                   style={{
                     width: "18rem",

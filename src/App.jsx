@@ -3,22 +3,18 @@ import { Routes, Route } from "react-router-dom";
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import Navbar from "./Components/Navbar";
 import PokemonInfo from './Components/PokemonInfo';
-import PokemonList from './Components/PokemonList';
 import Fight from "./Components/Fight";
 import Ranking from './Components/Ranking';
-// import Pagination from './Components/Pagination';
+import LandingPage from "./Components/LandingPage";
 
 function App() {
     const [pokemons, setPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
-    const[currentPage, setCurrentPage] = useState(0);
-    const[totalPages, setTotalPages] = useState(0);
-        // const[postsPerPage, setPostsPerPage]= useState(0);
-    // const[arrOfCurrentButtons, setArrOfCurrentButtons] = useState([]);
+    const[currentPage, setCurrentPage] = useState(1);
+    const[postsPerPage, setPostsPerPage]= useState(3);
 
     const getPokemon = async () => {
       const res = await axios.get("https://pokefight-backend-cbka.onrender.com/pokemon",
@@ -33,21 +29,16 @@ function App() {
       getPokemon();
     },[currentPage]);
 
-    // const lastPostIndex = currentPage * postsPerPage;
-    // const firstPostIndex = lastPostIndex - postsPerPage;
-    // const currentPosts = pokemons.slice(firstPostIndex, lastPostIndex);
+    const lastPostIndex = currentPage * postsPerPage;
+    const firstPostIndex = lastPostIndex - postsPerPage;
+    const currentPosts = pokemons.slice(firstPostIndex, lastPostIndex);
 
-    const handlePageChange = event =>{
-      console.log(event);
-      setCurrentPage(event.selected);
-    }
-  
   return (
     <>
 
 <Navbar />
       <Routes>
-        <Route path="/" element={<PokemonList pokemons={pokemons} />} />
+        <Route path="/" element={<LandingPage totalPosts={pokemons.length} currentPosts={currentPosts} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>} />
         <Route
           path="/:name"
           element={
@@ -63,26 +54,6 @@ function App() {
         />
         <Route path="/ranking" element={<Ranking />} />
       </Routes>
-          {/* <div>
-    <Pagination totalPosts={pokemons.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage}/>
-    </div> */}
-
-    <>
-<ReactPaginate
-        nextLabel=">>"
-        previousLabel="<<"
-        breakLabel="..."
-        forcePage={currentPage}
-        pageCount={totalPages}
-        renderOnZeroPageCount={null}
-        onPageChange={handlePageChange}
-        className="pagination"
-        activeClassName="active-page"
-        previousClassName="previous-page"
-        nextClassName="next-page"
-/>
-    </>
-
     </>
   );
 }
