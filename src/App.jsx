@@ -11,7 +11,7 @@ import Pagination from './Components/Pagination';
 function App() {
     const [pokemons, setPokemons] = useState([]);
     const[currentPage, setCurrentPage] = useState(1);
-    const[postsPerPage, setPostsPerPage]= useState(9);
+    const[postsPerPage, setPostsPerPage]= useState(8);
 
 
     const getPokemon = async () => {
@@ -36,7 +36,7 @@ function App() {
       <Route path="/:name" element={<PokemonInfo pokemons={pokemons}/>}/>
     </Routes>
     <div>
-    <Pagination totalPosts={pokemons.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} />
+    <Pagination totalPosts={pokemons.length} postsPerPage={postsPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage}/>
     </div>
     </>
   );
