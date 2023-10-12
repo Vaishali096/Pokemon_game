@@ -1,4 +1,31 @@
-.highlightedPg{
+/* .highlightedPg{
     background-color: blue;
     color: aliceblue;
+} */
+.Pagination{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+    width: 100%;
+    padding: 20px 10px;
+}
+
+.Pagination button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 0 5px;
+    font-size: 10px;
+    background-color: #fff;
+    color: black;
+    padding: 10px 12px;
+}
+.Pagination button:hover{
+    background-color: #ccc;
+    color: #fff;
 }
