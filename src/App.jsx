@@ -14,7 +14,7 @@ function App() {
     const [pokemons, setPokemons] = useState([]);
     const [selectedPokemon, setSelectedPokemon] = useState("");
     const[currentPage, setCurrentPage] = useState(1);
-    const[postsPerPage, setPostsPerPage]= useState(3);
+    const[postsPerPage, setPostsPerPage]= useState(12);
 
     const getPokemon = async () => {
       const res = await axios.get("https://pokefight-backend-cbka.onrender.com/pokemon",
