@@ -53,6 +53,42 @@ const Fight = ({ selectedPokemon }) => {
     setCPUHealth(data[0].base.HP);
   };
 
+  const updateUser = async () => {
+    if (userWins) {
+      const response = await fetch(
+        "https://pokefight-backend-cbka.onrender.com/game/user",
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            username: username,
+            score: score + 100,
+            _id: id,
+          }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
+      const winData = await response.json();
+      console.log(winData);
+    }
+
+    if (draw) {
+      const response = await fetch(
+        "https://pokefight-backend-cbka.onrender.com/game/user",
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            username: username,
+            score: score + 50,
+            _id: id,
+          }),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        }
+      );
+      const drawData = await response.json();
+      console.log(drawData);
+    }
+  };
+
   const userAttacks = () => {
     setUserTurnAnnouncement(true);
     let timerFunc = setTimeout(() => {
@@ -329,13 +365,65 @@ const Fight = ({ selectedPokemon }) => {
             <div
               className={
                 fightStatus
-                  ? "fight-user-health-show"
+                  ? "fight-user-health-show-current-HP-heading"
                   : "fight-user-health-hide"
               }
             >
-              Current Health: {userHealth > 0 ? userHealth : 0}
+              {userHealth > 0 ? "Current Health:" : null}
             </div>
-            <div>You have selected:</div>
+            <div className="fight-user-health-show-current-HP-div">
+              <span
+                className={
+                  fightStatus
+                    ? "fight-user-health-show-current-HP"
+                    : "fight-user-health-hide"
+                }
+              >
+                {userHealth > 0 ? (
+                  <progress
+                    className="fight-bar-user"
+                    value={userHealth}
+                    max={fightPageUserPokemon.base.HP}
+                  ></progress>
+                ) : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-user-health-show-current-HP"
+                    : "fight-user-health-hide"
+                }
+              >
+                {userHealth > 0 ? userHealth : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-user-health-show-current-HP"
+                    : "fight-user-health-hide"
+                }
+              >
+                {userHealth > 0 ? "/" : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-user-health-show-current-HP"
+                    : "fight-user-health-hide"
+                }
+              >
+                {userHealth > 0 ? fightPageUserPokemon.base.HP : null}
+              </span>
+            </div>
+            <div
+              className={
+                fightStatus
+                  ? "fight-user-health-show-current-HP"
+                  : "fight-user-select"
+              }
+            >
+              You have selected:
+            </div>
             <div>
               <p>{fightPageUserPokemon && fightPageUserPokemon.name.english}</p>
               <img
@@ -366,10 +454,62 @@ const Fight = ({ selectedPokemon }) => {
           >
             <div
               className={
-                fightStatus ? "fight-CPU-health-show" : "fight-CPU-health-hide"
+                fightStatus
+                  ? "fight-CPU-health-show-current-HP-heading"
+                  : "fight-CPU-health-hide"
               }
             >
-              Current Health: {CPUHealth > 0 ? CPUHealth : 0}
+              {CPUHealth > 0 ? "Current Health:" : null}
+            </div>
+            <div
+              className={
+                fightStatus
+                  ? "fight-CPU-health-show-current-HP-div"
+                  : "fight-CPU-health-hide"
+              }
+            >
+              <span
+                className={
+                  fightStatus
+                    ? "fight-CPU-health-show-current-HP"
+                    : "fight-CPU-health-hide"
+                }
+              >
+                {CPUHealth > 0 ? (
+                  <progress
+                    className="fight-bar-cpu"
+                    value={CPUHealth}
+                    max={fightPageCPUPokemon.base.HP}
+                  ></progress>
+                ) : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-CPU-health-show-current-HP"
+                    : "fight-CPU-health-hide"
+                }
+              >
+                {CPUHealth > 0 ? CPUHealth : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-CPU-health-show-current-HP"
+                    : "fight-CPU-health-hide"
+                }
+              >
+                {CPUHealth > 0 ? "/" : null}
+              </span>
+              <span
+                className={
+                  fightStatus
+                    ? "fight-CPU-health-show-current-HP"
+                    : "fight-CPU-health-hide"
+                }
+              >
+                {CPUHealth > 0 ? fightPageCPUPokemon.base.HP : null}
+              </span>
             </div>
             <div>Computer has selected:</div>
             <div>

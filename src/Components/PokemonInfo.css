@@ -66,3 +66,7 @@
 .Pokemon-info-modal .modal-content {
   background-color: #dddddd;
 }
+
+.Pokemon-info-input {
+  min-width: 250px;
+}

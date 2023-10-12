@@ -12,6 +12,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
   const { name } = useParams();
 
   const [show, setShow] = useState(false);
+  const [newUsername, setNewUsername] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,6 +23,24 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
 
   const onePokemon =
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
+
+  const addNewUser = async () => {
+    const response = await fetch(
+      "https://pokefight-backend-cbka.onrender.com/game/user",
+      {
+        method: "POST",
+        body: JSON.stringify({
+          username: newUsername,
+          score: 0,
+        }),
+        headers: { "Content-type": "application/json; charset=UTF-8" },
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    setSelectedPokemon(onePokemon.id);
+    setNewUsername("");
+  };
 
   return (
     <>
@@ -68,17 +87,20 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
             <Modal.Title>Please enter your username:</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <input />
+            <input
+              className="Pokemon-info-input"
+              id="username"
+              value={newUsername}
+              onChange={(e) => setNewUsername(e.target.value)}
+              placeholder="Add username here..."
+            />{" "}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Close
             </Button>
             <Link to="/fight">
-              <Button
-                variant="danger"
-                onClick={setSelectedPokemon(onePokemon.id)}
-              >
+              <Button variant="danger" onClick={addNewUser}>
                 Go to fight!
               </Button>
             </Link>
