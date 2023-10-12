@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import "./PokemonList.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import Pagination from "react-bootstrap/Pagination";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { PaginationControl } from "react-bootstrap-pagination-control";
 
 export default function PokemonList({ pokemons }) {
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);

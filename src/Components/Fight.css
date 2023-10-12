@@ -19,6 +19,7 @@
   min-width: 400px;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .fight-user-select {
@@ -29,16 +30,19 @@
   padding: 2% 4%;
   border: 10px solid green;
   margin: 0 4%;
+  text-align: center;
 }
 .fight-cpu-container-winner {
   padding: 2% 4%;
   border: 10px solid green;
   margin: 0 4%;
+  text-align: center;
 }
 
 .fight-x {
   margin: auto 0;
   font-size: 5em;
+  font-family: cursive;
 }
 
 .fight-button-show {
@@ -93,6 +97,7 @@
   align-items: center;
   flex-direction: column;
   margin-top: 2%;
+  font-family: cursive;
 }
 
 .fight-header-img {
@@ -117,4 +122,18 @@
 .fight-bar-cpu,
 .fight-bar-user {
   background-color: red;
+}
+
+.userWins-hide,
+.CPUwins-hide {
+  display: none;
+}
+.userWins-show,
+.CPUwins-show {
+  font-size: 2em;
+}
+
+.fight-pokemon-name {
+  font-size: 1.5em;
+  font-weight: bold;
 }

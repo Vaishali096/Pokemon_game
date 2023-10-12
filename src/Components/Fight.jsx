@@ -28,6 +28,7 @@ const Fight = ({ selectedPokemon }) => {
   const [fourthFightRoundCPU, setFourthFightRoundCPU] = useState(false);
   const [fourthFightRoundUser, setFourthFightRoundUser] = useState(false);
   const [draw, setDraw] = useState(false);
+  const [endFight, setEndFight] = useState(false);
 
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
 
@@ -293,11 +294,13 @@ const Fight = ({ selectedPokemon }) => {
   useEffect(() => {
     if (userHealth > 0) {
       setDraw(true);
+      setEndFight(true);
       updateUser();
     }
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      setEndFight(true);
       updateUser();
     }
   }, [endCPUTurn4]);
@@ -305,11 +308,13 @@ const Fight = ({ selectedPokemon }) => {
   useEffect(() => {
     if (CPUHealth > 0) {
       setDraw(true);
+      setEndFight(true);
       updateUser();
     }
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      setEndFight(true);
       updateUser();
     }
   }, [endUserTurn4]);
@@ -392,6 +397,9 @@ const Fight = ({ selectedPokemon }) => {
               {userHealth > 0 ? "Current Health:" : null}
             </div>
             <div className="fight-user-health-show-current-HP-div">
+              <span className={CPUWins ? "CPUwins-show" : "CPUwins-hide"}>
+                😵😵😵
+              </span>
               <span
                 className={
                   fightStatus
@@ -445,7 +453,9 @@ const Fight = ({ selectedPokemon }) => {
               You have selected:
             </div>
             <div>
-              <p>{fightPageUserPokemon && fightPageUserPokemon.name.english}</p>
+              <p className="fight-pokemon-name">
+                {fightPageUserPokemon && fightPageUserPokemon.name.english}
+              </p>
               <img
                 className="Pokedex-image"
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon}.png`}
@@ -488,6 +498,9 @@ const Fight = ({ selectedPokemon }) => {
                   : "fight-CPU-health-hide"
               }
             >
+              <span className={userWins ? "userWins-show" : "userWins-hide"}>
+                😵😵😵
+              </span>
               <span
                 className={
                   fightStatus
@@ -533,7 +546,9 @@ const Fight = ({ selectedPokemon }) => {
             </div>
             <div>Computer has selected:</div>
             <div>
-              <p>{fightPageCPUPokemon && fightPageCPUPokemon.name.english}</p>
+              <p className="fight-pokemon-name">
+                {fightPageCPUPokemon && fightPageCPUPokemon.name.english}
+              </p>
               {fightPageCPUPokemon && (
                 <img
                   className="Pokedex-image"
