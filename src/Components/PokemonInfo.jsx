@@ -31,25 +31,6 @@ export default function PokemonInfo({
   const onePokemon =
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
 
-  // const addNewUser = async () => {
-  //   setSelectedPokemon(onePokemon.id);
-  //   const response = await fetch(
-  //     "https://pokefight-backend-cbka.onrender.com/game/user",
-  //     {
-  //       method: "POST",
-  //       body: JSON.stringify({
-  //         username: newUsername,
-  //         score: 0,
-  //       }),
-  //       headers: { "Content-type": "application/json; charset=UTF-8" },
-  //     }
-  //   );
-  //   const data = await response.json();
-  //   console.log(data);
-
-  //   setNewUsername("");
-  // };
-
   const storeCurrentUsername = () => {
     setCurrentUser(tempUser);
     setSelectedPokemon(onePokemon.id);

@@ -4,9 +4,8 @@ import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Pagination from "react-bootstrap/Pagination";
+
 import "bootstrap/dist/css/bootstrap.min.css";
-import { PaginationControl } from "react-bootstrap-pagination-control";
 
 export default function PokemonList({ currentPosts }) {
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
@@ -52,17 +51,6 @@ export default function PokemonList({ currentPosts }) {
                     </Link>
                   </Card.Body>
                 </Card>
-
-                // <div
-
-                //   className="Pokemon"
-                //   key={pokemon.id}
-                // >
-
-                //   <img
-                //     src=
-                //   />
-                // </div>
               ))
             : "No pokemons to display"}
         </div>
