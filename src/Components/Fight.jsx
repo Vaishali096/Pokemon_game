@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import "./Fight.css";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { UserContext } from "../context/UserContext";
 
 const Fight = ({ selectedPokemon }) => {
   const [fightPageUserPokemon, setFightPageUserPokemon] = useState();
@@ -31,6 +32,7 @@ const Fight = ({ selectedPokemon }) => {
   const [endFight, setEndFight] = useState(false);
 
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
+  const { currentUser } = useContext(UserContext);
 
   const themeStyles = isLightTheme ? light : dark;
 
@@ -55,54 +57,20 @@ const Fight = ({ selectedPokemon }) => {
   };
 
   const updateUser = async () => {
-    if (userWins) {
+    console.log("updateUser triggered");
+    if (currentUser.length > 0) {
       const response = await fetch(
         "https://pokefight-backend-cbka.onrender.com/game/user",
         {
           method: "PUT",
           body: JSON.stringify({
-            username: username,
-            score: score + 100,
-            _id: id,
+            username: currentUser,
           }),
           headers: { "Content-type": "application/json; charset=UTF-8" },
         }
       );
       const winData = await response.json();
       console.log(winData);
-    }
-
-    if (draw) {
-      const response = await fetch(
-        "https://pokefight-backend-cbka.onrender.com/game/user",
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            username: username,
-            score: score + 50,
-            _id: id,
-          }),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        }
-      );
-      const drawData = await response.json();
-      console.log(drawData);
-    }
-    if (CPUWins) {
-      const response = await fetch(
-        "https://pokefight-backend-cbka.onrender.com/game/user",
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            username: username,
-            score: score - 50,
-            _id: id,
-          }),
-          headers: { "Content-type": "application/json; charset=UTF-8" },
-        }
-      );
-      const loseData = await response.json();
-      console.log(loseData);
     }
   };
 
@@ -295,13 +263,11 @@ const Fight = ({ selectedPokemon }) => {
     if (userHealth > 0) {
       setDraw(true);
       setEndFight(true);
-      updateUser();
     }
 
     if (userHealth <= 0) {
       setCPUWins(true);
       setEndFight(true);
-      updateUser();
     }
   }, [endCPUTurn4]);
 
@@ -309,15 +275,19 @@ const Fight = ({ selectedPokemon }) => {
     if (CPUHealth > 0) {
       setDraw(true);
       setEndFight(true);
-      updateUser();
     }
 
     if (CPUHealth <= 0) {
       setUserWins(true);
       setEndFight(true);
-      updateUser();
     }
   }, [endUserTurn4]);
+
+  useEffect(() => {
+    if (userWins) {
+      updateUser();
+    }
+  }, [userWins]);
 
   return (
     <>

@@ -3,6 +3,7 @@ import "./PokemonInfo.css";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { UserContext } from "../context/UserContext";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
@@ -12,35 +13,45 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
   const { name } = useParams();
 
   const [show, setShow] = useState(false);
-  const [newUsername, setNewUsername] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const [tempUser, setTempUser] = useState("");
 
   const themeStyles = isLightTheme ? light : dark;
 
   const onePokemon =
     pokemons && pokemons.find((pokemon) => pokemon.name.english == name);
 
-  const addNewUser = async () => {
-    setSelectedPokemon(onePokemon.id);
-    const response = await fetch(
-      "https://pokefight-backend-cbka.onrender.com/game/user",
-      {
-        method: "POST",
-        body: JSON.stringify({
-          username: newUsername,
-          score: 0,
-        }),
-        headers: { "Content-type": "application/json; charset=UTF-8" },
-      }
-    );
-    const data = await response.json();
-    console.log(data);
+  // const addNewUser = async () => {
+  //   setSelectedPokemon(onePokemon.id);
+  //   const response = await fetch(
+  //     "https://pokefight-backend-cbka.onrender.com/game/user",
+  //     {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         username: newUsername,
+  //         score: 0,
+  //       }),
+  //       headers: { "Content-type": "application/json; charset=UTF-8" },
+  //     }
+  //   );
+  //   const data = await response.json();
+  //   console.log(data);
 
-    setNewUsername("");
+  //   setNewUsername("");
+  // };
+
+  const storeCurrentUsername = () => {
+    setCurrentUser(tempUser);
+    setSelectedPokemon(onePokemon.id);
+  };
+
+  const handleOnKeyPress = (e) => {
+    setTempUser(e.target.value);
   };
 
   return (
@@ -103,8 +114,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
             <input
               className="Pokemon-info-input"
               id="username"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}
+              onChange={handleOnKeyPress}
               placeholder="Add username here..."
             />{" "}
           </Modal.Body>
@@ -113,7 +123,7 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
               Close
             </Button>
             <Link to="/fight">
-              <Button variant="danger" onClick={addNewUser}>
+              <Button variant="danger" onClick={storeCurrentUsername}>
                 Go to fight!
               </Button>
             </Link>
