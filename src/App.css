@@ -1,29 +1,27 @@
-
-.PokemonList{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.PokemonList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
-.PokemonList h1{
-    text-align: center;
-    width: 100vw;
+.PokemonList h1 {
+  text-align: center;
+  width: 100vw;
 }
-.Pokemon{
-    padding: 10px;
-    background-color: rgb(182, 227, 182);
-    margin: 10px;
-    width:20vw;
-    text-align: center;
+.Pokemon {
+  padding: 10px;
+  background-color: rgb(182, 227, 182);
+  margin: 10px;
+  width: 20vw;
+  text-align: center;
 }
-.PokemonDetails{
-    text-align: center;
-    background-color: rgb(182, 227, 182);
-    font-family: sans-serif;
-    font-size:medium;
-}
-
-.pageNo{
-display: flex;
-flex-direction: row;
+.PokemonDetails {
+  text-align: center;
+  background-color: rgb(182, 227, 182);
+  font-family: sans-serif;
+  font-size: medium;
 }
 
+.pageNo {
+  display: flex;
+  flex-direction: row;
+}
