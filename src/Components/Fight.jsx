@@ -3,7 +3,7 @@ import "./Fight.css";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 
-const Fight = ({ selectedPokemon }) => {
+const Fight = ({ selectedPokemon, newUsername }) => {
   const [fightPageUserPokemon, setFightPageUserPokemon] = useState();
   const [fightPageCPUPokemon, setFightPageCPUPokemon] = useState();
   const [fightStatus, setFightStatus] = useState(false);
@@ -61,7 +61,7 @@ const Fight = ({ selectedPokemon }) => {
         {
           method: "PUT",
           body: JSON.stringify({
-            username: username,
+            username: newUsername,
             score: score + 100,
             _id: id,
           }),
@@ -78,7 +78,7 @@ const Fight = ({ selectedPokemon }) => {
         {
           method: "PUT",
           body: JSON.stringify({
-            username: username,
+            username: newUsername,
             score: score + 50,
             _id: id,
           }),
@@ -94,7 +94,7 @@ const Fight = ({ selectedPokemon }) => {
         {
           method: "PUT",
           body: JSON.stringify({
-            username: username,
+            username: newUsername,
             score: score - 50,
             _id: id,
           }),
@@ -158,6 +158,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn]);
 
@@ -170,6 +171,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn]);
 
@@ -230,6 +232,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn2]);
 
@@ -242,6 +245,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn2]);
 
@@ -253,6 +257,7 @@ const Fight = ({ selectedPokemon }) => {
     }
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn3]);
 
@@ -264,6 +269,7 @@ const Fight = ({ selectedPokemon }) => {
     }
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn3]);
 

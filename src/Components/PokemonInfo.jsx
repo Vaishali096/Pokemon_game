@@ -7,12 +7,16 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Modal from "react-bootstrap/Modal";
 
-export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
+export default function PokemonInfo({
+  pokemons,
+  setSelectedPokemon,
+  newUsername,
+  setNewUsername,
+}) {
   const navigate = useNavigate();
   const { name } = useParams();
 
   const [show, setShow] = useState(false);
-  const [newUsername, setNewUsername] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,8 +43,6 @@ export default function PokemonInfo({ pokemons, setSelectedPokemon }) {
     );
     const data = await response.json();
     console.log(data);
-
-    setNewUsername("");
   };
 
   return (
