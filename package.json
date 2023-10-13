@@ -16,6 +16,8 @@
     "react-bootstrap": "^2.9.0",
     "react-bootstrap-pagination-control": "^1.0.5",
     "react-dom": "^18.2.0",
+    "react-paginate": "^8.2.0",
+    "react-pagination": "^1.0.0",
     "react-router-dom": "^6.16.0"
   },
   "devDependencies": {

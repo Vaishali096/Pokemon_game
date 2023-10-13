@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
 
-const Fight = ({ selectedPokemon }) => {
+const Fight = ({ selectedPokemon, newUsername }) => {
   const [fightPageUserPokemon, setFightPageUserPokemon] = useState();
   const [fightPageCPUPokemon, setFightPageCPUPokemon] = useState();
   const [fightStatus, setFightStatus] = useState(false);
@@ -126,6 +126,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn]);
 
@@ -138,6 +139,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn]);
 
@@ -198,6 +200,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn2]);
 
@@ -210,6 +213,7 @@ const Fight = ({ selectedPokemon }) => {
 
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn2]);
 
@@ -221,6 +225,7 @@ const Fight = ({ selectedPokemon }) => {
     }
     if (userHealth <= 0) {
       setCPUWins(true);
+      updateUser();
     }
   }, [endCPUTurn3]);
 
@@ -232,6 +237,7 @@ const Fight = ({ selectedPokemon }) => {
     }
     if (CPUHealth <= 0) {
       setUserWins(true);
+      updateUser();
     }
   }, [endUserTurn3]);
 
