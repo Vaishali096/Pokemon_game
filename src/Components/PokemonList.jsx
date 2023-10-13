@@ -8,7 +8,7 @@ import Pagination from "react-bootstrap/Pagination";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { PaginationControl } from "react-bootstrap-pagination-control";
 
-export default function PokemonList({ pokemons }) {
+export default function PokemonList({ currentPosts }) {
   const { light, dark, isLightTheme, toggleTheme } = useContext(ThemeContext);
 
   const themeStyles = isLightTheme ? light : dark;
@@ -30,8 +30,8 @@ export default function PokemonList({ pokemons }) {
           className="PokemonList"
           style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
-          {pokemons
-            ? pokemons.map((pokemon) => (
+          {currentPosts
+            ? currentPosts.map((pokemon) => (
                 <Card
                   style={{
                     width: "18rem",
