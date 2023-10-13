@@ -14,7 +14,7 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(16);
+  const [postsPerPage, setPostsPerPage] = useState(20);
   const [newUsername, setNewUsername] = useState("");
 
   const getPokemon = async () => {
