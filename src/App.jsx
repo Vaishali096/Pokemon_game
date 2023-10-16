@@ -9,6 +9,7 @@ import PokemonInfo from "./Components/PokemonInfo";
 import Fight from "./Components/Fight";
 import Ranking from "./Components/Ranking";
 import LandingPage from "./Components/LandingPage";
+import ScrollToTop from "./Components/ScrollToTop";
 
 function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route
