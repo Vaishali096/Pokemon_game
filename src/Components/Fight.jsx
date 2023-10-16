@@ -3,6 +3,9 @@ import "./Fight.css";
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { UserContext } from "../context/UserContext";
+import Card from "react-bootstrap/Card";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Fight = ({ selectedPokemon, newUsername }) => {
   const [fightPageUserPokemon, setFightPageUserPokemon] = useState();
@@ -355,196 +358,246 @@ const Fight = ({ selectedPokemon, newUsername }) => {
           className="fight-container"
           style={{ background: themeStyles.ui, color: themeStyles.text }}
         >
-          <div
-            style={{ background: themeStyles.bg, color: themeStyles.text }}
+          <Card
             className={
               userWins
                 ? "fight-player-container-winner"
                 : "fight-player-container"
             }
-          >
-            <div
-              className={
-                fightStatus
-                  ? "fight-user-health-show-current-HP-heading"
-                  : "fight-user-health-hide"
-              }
-            >
-              {userHealth > 0 ? "Current Health:" : null}
-            </div>
-            <div className="fight-user-health-show-current-HP-div">
-              <span className={CPUWins ? "CPUwins-show" : "CPUwins-hide"}>
-                😵😵😵
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-user-health-show-current-HP"
-                    : "fight-user-health-hide"
-                }
-              >
-                {userHealth > 0 ? (
-                  <progress
-                    className="fight-bar-user"
-                    value={userHealth}
-                    max={fightPageUserPokemon.base.HP}
-                  ></progress>
-                ) : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-user-health-show-current-HP"
-                    : "fight-user-health-hide"
-                }
-              >
-                {userHealth > 0 ? userHealth : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-user-health-show-current-HP"
-                    : "fight-user-health-hide"
-                }
-              >
-                {userHealth > 0 ? "/" : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-user-health-show-current-HP"
-                    : "fight-user-health-hide"
-                }
-              >
-                {userHealth > 0 ? fightPageUserPokemon.base.HP : null}
-              </span>
-            </div>
-            <div
-              className={
-                fightStatus
-                  ? "fight-user-health-show-current-HP"
-                  : "fight-user-select"
-              }
-            >
-              You have selected:
-            </div>
-            <div>
-              <p className="fight-pokemon-name">
-                {fightPageUserPokemon && fightPageUserPokemon.name.english}
-              </p>
-              <img
-                className="Pokedex-image"
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon}.png`}
-                height="150px"
-              />
-              <p>
-                Attack:{" "}
-                {fightPageUserPokemon && fightPageUserPokemon.base.Attack}
-              </p>
-              <p>
-                Defense:{" "}
-                {fightPageUserPokemon && fightPageUserPokemon.base.Defense}
-              </p>
-              <p>HP: {fightPageUserPokemon && fightPageUserPokemon.base.HP}</p>
-              <p>
-                Speed: {fightPageUserPokemon && fightPageUserPokemon.base.Speed}
-              </p>
-            </div>
-          </div>
-          <div className="fight-x">x</div>
-          <div
             style={{ background: themeStyles.bg, color: themeStyles.text }}
+          >
+            <Card.Body>
+              <Card.Text>
+                <div
+                  className={
+                    fightStatus
+                      ? "fight-user-health-show-current-HP-heading"
+                      : "fight-user-health-hide"
+                  }
+                >
+                  {userHealth > 0 ? "Current Health:" : null}
+                </div>
+                <div className="fight-user-health-show-current-HP-div">
+                  <span className={CPUWins ? "CPUwins-show" : "CPUwins-hide"}>
+                    😵😵😵
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-user-health-show-current-HP"
+                        : "fight-user-health-hide"
+                    }
+                  >
+                    {userHealth > 0 ? (
+                      <progress
+                        className="fight-bar-user"
+                        value={userHealth}
+                        max={fightPageUserPokemon.base.HP}
+                      ></progress>
+                    ) : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-user-health-show-current-HP"
+                        : "fight-user-health-hide"
+                    }
+                  >
+                    {userHealth > 0 ? userHealth : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-user-health-show-current-HP"
+                        : "fight-user-health-hide"
+                    }
+                  >
+                    {userHealth > 0 ? "/" : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-user-health-show-current-HP"
+                        : "fight-user-health-hide"
+                    }
+                  >
+                    {userHealth > 0 ? fightPageUserPokemon.base.HP : null}
+                  </span>
+                </div>
+              </Card.Text>
+            </Card.Body>
+            <Card.Body>
+              <Card.Text>
+                <div
+                  className={
+                    fightStatus
+                      ? "fight-user-health-show-current-HP"
+                      : "fight-user-select"
+                  }
+                >
+                  You have selected:
+                </div>
+              </Card.Text>
+              <Card.Title>
+                <p className="fight-pokemon-name">
+                  {fightPageUserPokemon && fightPageUserPokemon.name.english}
+                </p>
+              </Card.Title>
+            </Card.Body>
+            <Card.Img
+              variant="top"
+              className="Pokedex-image"
+              src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${selectedPokemon}.png`}
+              height="150px"
+            />
+            <Card.Body>
+              <Card.Text>
+                <div>
+                  <p>
+                    Attack:{" "}
+                    {fightPageUserPokemon && fightPageUserPokemon.base.Attack}
+                  </p>
+                  <p>
+                    Defense:{" "}
+                    {fightPageUserPokemon && fightPageUserPokemon.base.Defense}
+                  </p>
+                  <p>
+                    HP: {fightPageUserPokemon && fightPageUserPokemon.base.HP}
+                  </p>
+                  <p>
+                    Speed:{" "}
+                    {fightPageUserPokemon && fightPageUserPokemon.base.Speed}
+                  </p>
+                </div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
+
+          <div className="fight-x">x</div>
+
+          <Card
             className={
               CPUWins ? "fight-cpu-container-winner" : "fight-cpu-container"
             }
+            style={{ background: themeStyles.bg, color: themeStyles.text }}
           >
-            <div
-              className={
-                fightStatus
-                  ? "fight-CPU-health-show-current-HP-heading"
-                  : "fight-CPU-health-hide"
-              }
-            >
-              {CPUHealth > 0 ? "Current Health:" : null}
-            </div>
-            <div
-              className={
-                fightStatus
-                  ? "fight-CPU-health-show-current-HP-div"
-                  : "fight-CPU-health-hide"
-              }
-            >
-              <span className={userWins ? "userWins-show" : "userWins-hide"}>
-                😵😵😵
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-CPU-health-show-current-HP"
-                    : "fight-CPU-health-hide"
-                }
-              >
-                {CPUHealth > 0 ? (
-                  <progress
-                    className="fight-bar-cpu"
-                    value={CPUHealth}
-                    max={fightPageCPUPokemon.base.HP}
-                  ></progress>
-                ) : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-CPU-health-show-current-HP"
-                    : "fight-CPU-health-hide"
-                }
-              >
-                {CPUHealth > 0 ? CPUHealth : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-CPU-health-show-current-HP"
-                    : "fight-CPU-health-hide"
-                }
-              >
-                {CPUHealth > 0 ? "/" : null}
-              </span>
-              <span
-                className={
-                  fightStatus
-                    ? "fight-CPU-health-show-current-HP"
-                    : "fight-CPU-health-hide"
-                }
-              >
-                {CPUHealth > 0 ? fightPageCPUPokemon.base.HP : null}
-              </span>
-            </div>
-            <div>Computer has selected:</div>
-            <div>
-              <p className="fight-pokemon-name">
-                {fightPageCPUPokemon && fightPageCPUPokemon.name.english}
-              </p>
-              {fightPageCPUPokemon && (
-                <img
-                  className="Pokedex-image"
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${fightPageCPUPokemon.id}.png`}
-                  height="150px"
-                />
-              )}
-              <p>
-                Attack: {fightPageCPUPokemon && fightPageCPUPokemon.base.Attack}
-              </p>
-              <p>
-                Defense:{" "}
-                {fightPageCPUPokemon && fightPageCPUPokemon.base.Defense}
-              </p>
-              <p>HP: {fightPageCPUPokemon && fightPageCPUPokemon.base.HP}</p>
-              <p>
-                Speed: {fightPageCPUPokemon && fightPageCPUPokemon.base.Speed}
-              </p>
-            </div>
-          </div>
+            <Card.Body>
+              <Card.Text>
+                <div
+                  className={
+                    fightStatus
+                      ? "fight-CPU-health-show-current-HP-heading"
+                      : "fight-CPU-health-hide"
+                  }
+                >
+                  {CPUHealth > 0 ? "Current Health:" : null}
+                </div>
+                <div
+                  className={
+                    fightStatus
+                      ? "fight-CPU-health-show-current-HP-div"
+                      : "fight-CPU-health-hide"
+                  }
+                >
+                  <span
+                    className={userWins ? "userWins-show" : "userWins-hide"}
+                  >
+                    😵😵😵
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-CPU-health-show-current-HP"
+                        : "fight-CPU-health-hide"
+                    }
+                  >
+                    {CPUHealth > 0 ? (
+                      <progress
+                        className="fight-bar-cpu"
+                        value={CPUHealth}
+                        max={fightPageCPUPokemon.base.HP}
+                      ></progress>
+                    ) : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-CPU-health-show-current-HP"
+                        : "fight-CPU-health-hide"
+                    }
+                  >
+                    {CPUHealth > 0 ? CPUHealth : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-CPU-health-show-current-HP"
+                        : "fight-CPU-health-hide"
+                    }
+                  >
+                    {CPUHealth > 0 ? "/" : null}
+                  </span>
+                  <span
+                    className={
+                      fightStatus
+                        ? "fight-CPU-health-show-current-HP"
+                        : "fight-CPU-health-hide"
+                    }
+                  >
+                    {CPUHealth > 0 ? fightPageCPUPokemon.base.HP : null}
+                  </span>
+                </div>
+              </Card.Text>
+            </Card.Body>
+
+            <Card.Body>
+              <Card.Text>
+                <div
+                  className={
+                    fightStatus
+                      ? "fight-CPU-health-show-current-HP"
+                      : "fight-CPU-select"
+                  }
+                >
+                  Computer has selected:
+                </div>
+              </Card.Text>
+              <Card.Title>
+                <p className="fight-pokemon-name">
+                  {fightPageCPUPokemon && fightPageCPUPokemon.name.english}
+                </p>
+              </Card.Title>
+            </Card.Body>
+            {fightPageCPUPokemon && (
+              <Card.Img
+                variant="top"
+                className="Pokedex-image"
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${fightPageCPUPokemon.id}.png`}
+                height="150px"
+              />
+            )}
+            <Card.Body>
+              <Card.Text>
+                <div>
+                  <p>
+                    Attack:{" "}
+                    {fightPageCPUPokemon && fightPageCPUPokemon.base.Attack}
+                  </p>
+                  <p>
+                    Defense:{" "}
+                    {fightPageCPUPokemon && fightPageCPUPokemon.base.Defense}
+                  </p>
+                  <p>
+                    HP: {fightPageCPUPokemon && fightPageCPUPokemon.base.HP}
+                  </p>
+                  <p>
+                    Speed:{" "}
+                    {fightPageCPUPokemon && fightPageCPUPokemon.base.Speed}
+                  </p>
+                </div>
+              </Card.Text>
+            </Card.Body>
+          </Card>
         </div>
         <div
           className="fight-lower-container"

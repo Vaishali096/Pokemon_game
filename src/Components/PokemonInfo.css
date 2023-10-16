@@ -77,3 +77,12 @@
 .PokemonInfo-bold {
   font-weight: bold;
 }
+
+@media only screen and (max-width: 1300px) {
+  .PokemonInfo-container {
+    height: 100%;
+  }
+  .text-center {
+    max-width: 350px;
+  }
+}
